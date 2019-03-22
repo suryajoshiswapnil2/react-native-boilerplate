@@ -4,7 +4,6 @@
  */
 
 import thunk from "redux-thunk";
-import { apiMiddleware } from "redux-api-middleware";
 import { createStore, applyMiddleware, combineReducers } from "redux";
 
 /**
@@ -19,7 +18,7 @@ import { todoReducer } from "./reducers/todo";
  */
 const store = createStore(
   combineReducers({ todoReducer }),
-  composeWithDevTools(applyMiddleware(thunk, apiMiddleware))
+  applyMiddleware(thunk)
 );
 
 export default store;

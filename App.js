@@ -6,18 +6,33 @@
  * @flow
  */
 
-import React, { Component } from "react";
-import { Text, View } from "react-native";
-import { createAppContainer } from "react-navigation";
+/**
+ * Entry point for app
+ * @app
+ */
 
-class App extends Component {
+import React from "react";
+
+import store from "./app/redux";
+import { Provider } from "react-redux";
+
+import AppContainer from "./app/index";
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.navigator = null;
+  }
+
+  componentDidMount() {}
+
   render() {
     return (
-      <View>
-        <Text>Welcome to React Native!</Text>
-      </View>
+      <Provider store={store}>
+        <AppContainer ref={nav => (this.navigator = nav)} />
+      </Provider>
     );
   }
 }
 
-export default createAppContainer(App);
+export default App;
