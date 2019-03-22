@@ -2,7 +2,12 @@
  * Routes for your application
  * @routes
  */
-import { createStackNavigator, createAppContainer } from "react-navigation";
+import {
+  createStackNavigator,
+  createAppContainer,
+  createDrawerNavigator,
+  createBottomTabNavigator
+} from "react-navigation";
 
 /**
  * UI screens
@@ -16,4 +21,23 @@ import Home from "./pages/home";
  */
 const rootStack = createStackNavigator({ Home }, { initialRouteName: "Home" });
 
-export default createAppContainer(rootStack);
+/**
+ * Tab Navigator
+ * @navigator
+ */
+const TabNavigator = createBottomTabNavigator({
+  Home: rootStack,
+  Settings: rootStack,
+  Help: rootStack,
+  Contact: rootStack
+});
+
+/**
+ * Drawer Navigator
+ * @navigator
+ */
+const DrawerNavigator = createDrawerNavigator({
+  Home: { screen: TabNavigator }
+});
+
+export default createAppContainer(DrawerNavigator);
